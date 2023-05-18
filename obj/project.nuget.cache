@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "7s6Cxg/UOFYrGHzBCnArdw/zQdz9uo6ZP01oKCVaR3x8l07f0DSb46U+dKcRmnSYH0r3s9HUGwBC144m2te+Xg==",
+  "dgSpecHash": "1t6C3IA58aLQ1gm7TqhmxBlFO5HoOl3Y5H0f1vZWPO1D7RN9J3DGsrIPiqGyycRE4qvVcS5YYXrKJoy9YHYyQQ==",
   "success": true,
   "projectFilePath": "/Users/adenennis/Documents/GitHub/Tower_Defense_Game2/Tower_Defense_Game2.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/Users/adenennis/.nuget/packages/raylib-cs/4.5.0/raylib-cs.4.5.0.nupkg.sha512",
+    "/Users/adenennis/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }
