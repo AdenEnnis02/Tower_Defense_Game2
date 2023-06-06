@@ -41,10 +41,10 @@ class Position
         this.y = y;
     }
 
-    public (int,int) getPosition() 
-    {
-        return (this.getX(),this.getY());
-    }
+    // public (int,int) getPosition() 
+    // {
+    //     return (this.getX(),this.getY());
+    // }
 
     public void setPosition(double x, double y) 
     {
