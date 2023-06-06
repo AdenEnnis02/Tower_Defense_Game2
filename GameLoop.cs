@@ -7,12 +7,14 @@ namespace TowerDefense
     public class GameLoop
     {
         private static Color _cursorColor = Color.BLUE;
-
+        
         public static void Main()
         {
             const int screenWidth = 800;
             const int screenHeight = 450;
-
+            var ogre_list = new List<GameObject>();
+            var position = new Vector2(50, 0);
+            
             Raylib.InitWindow(screenWidth, screenHeight, "Mouse Support");
 
             Raylib.SetTargetFPS(60);
@@ -36,6 +38,11 @@ namespace TowerDefense
                 Raylib.DrawText("Click the left mouse button to change the cursor's color", 10, 40, 20, Color.GRAY);
 
                 Raylib.DrawCircleV(Raylib.GetMousePosition(), 15, _cursorColor);
+
+                Monster ogre  = new Monster("Ogre", 200, 50, 100, Color.GREEN);
+                ogre.position = position;
+                ogre.movespeed = new Vector2(10,10);
+                ogre_list.Add(ogre);
 
                 Raylib.EndDrawing();
             }
