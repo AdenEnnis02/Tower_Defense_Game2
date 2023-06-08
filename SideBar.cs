@@ -5,7 +5,7 @@ public class SideBar //This is the bar on the side of the screen where the user 
 {
     bool buyBlue = false;
 
-    public void DrawToweroptions()
+    public void DrawTowerOptions()
     {
 
         Vector2 mousePosition = Raylib.GetMousePosition();
