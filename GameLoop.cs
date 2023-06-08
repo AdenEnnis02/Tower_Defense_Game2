@@ -1,53 +1,57 @@
 
+using System;
 using Raylib_cs;
 using System.Numerics;
 
-namespace TowerDefense
+public class GameLoop
 {
-    public class GameLoop
+    public static void Main()
     {
-        private static Color _cursorColor = Color.BLUE;
-        
-        public static void Main()
+        const int screenWidth = 1150;
+        const int screenHeight = 900;
+        const int health = 100;
+        const int money = 100;
+
+        int mouseX = Raylib.GetMouseX();
+        int mouseY = Raylib.GetMouseY();
+        Vector2 mousePosition = Raylib.GetMousePosition();
+
+        Raylib.InitWindow(screenWidth, screenHeight, "Tower Defense");
+
+        Raylib.SetTargetFPS(60);
+
+        //Make instances of other classes here
+        Mouse mouseController = new Mouse();
+        GameBoard gameBoard = new GameBoard();
+        MakeSquares MS = new MakeSquares();
+        SideBar SB = new SideBar();
+        TrailFollow TF = new TrailFollow();
+        Collision collisionChecker = new Collision();
+
+
+        while (!Raylib.WindowShouldClose())
         {
-            const int screenWidth = 800;
-            const int screenHeight = 450;
-            var ogre_list = new List<GameObject>();
-            var position = new Vector2(50, 0);
-            
-            Raylib.InitWindow(screenWidth, screenHeight, "Mouse Support");
+            mouseController.Update();
+            TF.Move();
+            Raylib.BeginDrawing();
+            Raylib.ClearBackground(Color.WHITE);
 
-            Raylib.SetTargetFPS(60);
+            //Add functions from other classes here.
+            gameBoard.Draw();
 
-            while (!Raylib.WindowShouldClose())
-            {
-                if (Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
-                {
-                    // Change the cursor's color
-                    _cursorColor = new Color(
-                        Raylib.GetRandomValue(0, 255),
-                        Raylib.GetRandomValue(0, 255),
-                        Raylib.GetRandomValue(0, 255),
-                        255);
-                }
+            SB.DrawToweroptions();
+            mouseController.DrawCursor();
+            TF.Draw();
 
-                Raylib.BeginDrawing();
-                Raylib.ClearBackground(Color.WHITE);
+            Raylib.DrawText($"{health}", 990, 50, 30, Color.BLUE);
+            Raylib.DrawText($"{money}", 990, 100, 30, Color.BLUE);
+            Raylib.DrawText("Play", 990, 840, 30, Color.BLUE);
 
-                Raylib.DrawText("Move the mouse to change the cursor's position", 10, 10, 20, Color.GRAY);
-                Raylib.DrawText("Click the left mouse button to change the cursor's color", 10, 40, 20, Color.GRAY);
-
-                Raylib.DrawCircleV(Raylib.GetMousePosition(), 15, _cursorColor);
-
-                Monster ogre  = new Monster("Ogre", 200, 50, 100, Color.GREEN);
-                ogre.position = position;
-                ogre.movespeed = new Vector2(10,10);
-                ogre_list.Add(ogre);
-
-                Raylib.EndDrawing();
-            }
-
-            Raylib.CloseWindow();
+            Raylib.EndDrawing();
         }
+        Raylib.CloseWindow();
     }
 }
+
+
+
