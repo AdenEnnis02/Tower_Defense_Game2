@@ -1,53 +1,99 @@
-
+using System;
 using Raylib_cs;
 using System.Numerics;
 
-namespace TowerDefense
+public class GameLoop
 {
-    public class GameLoop
+    public static void Main()
     {
-        private static Color _cursorColor = Color.BLUE;
-        
-        public static void Main()
+        const int screenWidth = 1150;
+        const int screenHeight = 900;
+        const int health = 100;
+        const int money = 100;
+
+        int mouseX = Raylib.GetMouseX();
+        int mouseY = Raylib.GetMouseY();
+        Vector2 mousePosition = Raylib.GetMousePosition();
+
+        Raylib.InitWindow(screenWidth, screenHeight, "Tower Defense");
+        Raylib.SetTargetFPS(60);
+
+        // Make instances of other classes here
+        Mouse mouseController = new Mouse();
+        GameBoard gameBoard = new GameBoard();
+        MakeSquares MS = new MakeSquares();
+        SideBar SB = new SideBar();
+        TrailFollow TF = new TrailFollow();
+        Collision collisionChecker = new Collision();
+
+        // Box variables
+        Rectangle box = new Rectangle(0, 150, 50, 50);
+        Vector2[] path = new Vector2[]
         {
-            const int screenWidth = 800;
-            const int screenHeight = 450;
-            var ogre_list = new List<GameObject>();
-            var position = new Vector2(50, 0);
-            
-            Raylib.InitWindow(screenWidth, screenHeight, "Mouse Support");
+            new Vector2(0, 150),  // Starting point
+            new Vector2(200, 150),
+            new Vector2(200, 350),
+            new Vector2(450, 350),
+            new Vector2(450, 150),
+            new Vector2(700, 150),
+            new Vector2(700, 600),
+            new Vector2(150, 600),
+            new Vector2(150, 750),
+            new Vector2(900, 750),
+        };
+        int currentPathIndex = 0;
+        Vector2 target = path[currentPathIndex];
+        float speed = 2.5f;
 
-            Raylib.SetTargetFPS(60);
+        bool startButtonClicked = false;
+        Rectangle startButton = new Rectangle(990, 840, 100, 50);
 
-            while (!Raylib.WindowShouldClose())
+        while (!Raylib.WindowShouldClose())
+        {
+            // Update
+            if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), startButton) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
             {
-                if (Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
-                {
-                    // Change the cursor's color
-                    _cursorColor = new Color(
-                        Raylib.GetRandomValue(0, 255),
-                        Raylib.GetRandomValue(0, 255),
-                        Raylib.GetRandomValue(0, 255),
-                        255);
-                }
-
-                Raylib.BeginDrawing();
-                Raylib.ClearBackground(Color.WHITE);
-
-                Raylib.DrawText("Move the mouse to change the cursor's position", 10, 10, 20, Color.GRAY);
-                Raylib.DrawText("Click the left mouse button to change the cursor's color", 10, 40, 20, Color.GRAY);
-
-                Raylib.DrawCircleV(Raylib.GetMousePosition(), 15, _cursorColor);
-
-                Monster ogre  = new Monster("Ogre", 200, 50, 100, Color.GREEN);
-                ogre.position = position;
-                ogre.movespeed = new Vector2(10,10);
-                ogre_list.Add(ogre);
-
-                Raylib.EndDrawing();
+                startButtonClicked = true;
             }
 
-            Raylib.CloseWindow();
+            if (startButtonClicked)
+            {
+                if (Vector2.Distance(new Vector2(box.x, box.y), target) < 1.0f)
+                {
+                    currentPathIndex = (currentPathIndex + 1) % path.Length;
+                    target = path[currentPathIndex];
+                }
+
+                // Move the box towards the target
+                Vector2 direction = Vector2.Normalize(target - new Vector2(box.x, box.y));
+                box.x += direction.X * speed;
+                box.y += direction.Y * speed;
+            }
+
+            // Add functions from other classes here
+            mouseController.Update();
+            TF.Move();
+
+            // Draw
+            Raylib.BeginDrawing();
+            Raylib.ClearBackground(Color.WHITE);
+
+            gameBoard.Draw();
+            SB.DrawTowerOptions();
+            mouseController.DrawCursor();
+
+            // Draw box
+            Raylib.DrawRectangleRec(box, Color.GOLD);
+
+            // Draw HUD
+            Raylib.DrawText($"{health}", 990, 50, 30, Color.BLUE);
+            Raylib.DrawText($"{money}", 990, 100, 30, Color.BLUE);
+            Raylib.DrawRectangleRec(startButton, Color.GREEN);
+            Raylib.DrawText("Start", (int)startButton.x + 20, (int)startButton.y + 10, 20, Color.BLACK);
+
+            Raylib.EndDrawing();
         }
+
+        Raylib.CloseWindow();
     }
 }
