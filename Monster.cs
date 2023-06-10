@@ -1,22 +1,26 @@
 using Raylib_cs;
-namespace TowerDefense
-{
-
-    class Monster: GameObject
+using System.Threading;
+    public class Monster
     {
         int hp;
         int movementSpeed;
-        int size;
-        string name;
         bool hit = false;
         int value;
+        Color color;
 
-        public Monster (string name, int hp, int size,int value, Color color)
+        public Monster (Color color, int hp, int value)
         {
             this.hp = hp;
-            this.size = size;
-            this.name = name;
             this.value = value;
+            this.color = color;
+    
+        }
+
+        public void draw()
+        {
+            Rectangle box = new Rectangle(0, 150, 50, 50);
+            Raylib.DrawRectangleRec(box, color);
+            Thread.Sleep(1000);
         }
 
         // public int damageMonster()
@@ -32,4 +36,3 @@ namespace TowerDefense
         //         return Monster.hp;
         // }
     }
-}
