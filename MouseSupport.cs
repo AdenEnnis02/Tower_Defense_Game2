@@ -1,30 +1,26 @@
-// using namespace TowerDefenders;
-// using Raylib_cs;
+using System;
+using Raylib_cs;
+using System.Numerics;
 
+public class Mouse
+{
+    private Color _cursorColor = Color.BLUE;
 
-// class MouseSupport
-// {
-//     static void Main()
-//     {
-//         const int screenWidth = 800;
-//         const int screenHeight = 450;
+    public void Update()
+    {
+        if (Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
+        {
+            // Change the cursor's color
+            _cursorColor = new Color(
+                Raylib.GetRandomValue(0, 255),
+                Raylib.GetRandomValue(0, 255),
+                Raylib.GetRandomValue(0, 255),
+                255);
+        }
+    }
 
-//         InitWindow(screenWidth, screenHeight, "Mouse Example");
-//         SetTargetFPS(60);
-
-//         while (!WindowShouldClose())
-//         {
-//             // Update
-//             Vector2 mousePosition = GetMousePosition();
-
-//             // Draw
-//             BeginDrawing();
-//             ClearBackground(WHITE);
-//             DrawText($"Mouse Position: ({mousePosition.X}, {mousePosition.Y})", 10, 10, 20, RED);
-//             EndDrawing();
-//         }
-
-//         CloseWindow();
-//     }
-// }
-
+    public void DrawCursor()
+    {
+        Raylib.DrawCircleV(Raylib.GetMousePosition(), 10, _cursorColor);
+    }
+}
