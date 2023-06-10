@@ -21,8 +21,8 @@ We utilized C# to create the game.
 
 * Nate Leonardson
 * Aden Ennis
-* Chris Leavitt
-* Chris Peart
+* Christopher Leavitt
+* Krisstopher Nielsen
 * Braeden Pope
 
 
