@@ -29,7 +29,8 @@ We utilized C# to create the game.
 # Useful Websites
 
 {Make a list of websites that you found helpful in this project}
-* [Raylib](https://www.nuget.org/packages/Raylib-cs)
+* [Raylib installer](https://www.nuget.org/packages/Raylib-cs)
+* [How to create a new branch on Github](https://www.youtube.com/watch?v=Lf3DYRvCPFo)
 
 # Future Work
 
