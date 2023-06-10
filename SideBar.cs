@@ -5,6 +5,8 @@ public class SideBar //This is the bar on the side of the screen where the user 
 {
     bool buyBlue = false;
 
+    List<Tower> towers = new List<Tower>();
+
     public void DrawTowerOptions()
     {
 
@@ -47,8 +49,7 @@ public class SideBar //This is the bar on the side of the screen where the user 
             if (Raylib.IsMouseButtonReleased(MouseButton.MOUSE_LEFT_BUTTON))
             {
                 buyBlue = false;
-                Rectangle oneBlueSquare1 = new Rectangle(Raylib.GetMouseX(), Raylib.GetMouseY(), 50, 50);
-                Raylib.DrawRectangleRec(oneBlueSquare1, Color.RED);
+                Tower tower = new Tower(Raylib.GetMouseX(), Raylib.GetMouseY());
             }
         }
 

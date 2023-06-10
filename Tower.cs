@@ -1,3 +1,4 @@
+using Raylib_cs;
 class Tower 
 {
     private int damage;
@@ -15,13 +16,29 @@ class Tower
         this.location = new Position(10.0,10.0);
     }
 
+    public Tower(int x, int y)
+    {
+       this.damage = 10;
+        this.fireSpeed = 1.0;
+        this.range = 10;
+        this.location = new Position((double)x,(double)y);
+        Console.WriteLine("tower made.");
+        draw();      
+    }
+
     public Tower(int damage, double firespeed, int range, Position location) 
     {
       this.damage = damage;
       this.fireSpeed = fireSpeed;
       this.range = range;
+      draw();
     }
 
+    public void draw()
+    {
+        Rectangle oneBlueSquare1 = new Rectangle((int)location.getX(), (int)location.getY(), 50, 50);
+        Raylib.DrawRectangleRec(oneBlueSquare1, Color.BLUE); 
+    }
     /*
      * Needed Functionality: Fire, Detect, Draw(?)
      */
