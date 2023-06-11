@@ -25,7 +25,7 @@ public class GameLoop
         SideBar SB = new SideBar();
         TrailFollow TF = new TrailFollow();
         Collision collisionChecker = new Collision();
-        Tower tower = new Tower(100,100);
+        Tower tower = new Tower();
 
         // Box variables
         Rectangle box = new Rectangle(0, 150, 50, 50);
@@ -91,7 +91,7 @@ public class GameLoop
             Raylib.DrawText($"{money}", 990, 100, 30, Color.BLUE);
             Raylib.DrawRectangleRec(startButton, Color.GREEN);
             Raylib.DrawText("Start", (int)startButton.x + 20, (int)startButton.y + 10, 20, Color.BLACK);
-            //tower.draw();
+            tower.draw();
             Raylib.EndDrawing();
         }
 
