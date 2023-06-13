@@ -1,7 +1,7 @@
 using Raylib_cs;
 class Tower 
 {
-    private int damage;
+    public int damage;
     private double fireSpeed;
     private int range;
     
@@ -18,7 +18,7 @@ class Tower
 
     public Tower(int x, int y)
     {
-       this.damage = 10;
+        this.damage = 10;
         this.fireSpeed = 1.0;
         this.range = 10;
         this.location = new Position((double)x,(double)y);

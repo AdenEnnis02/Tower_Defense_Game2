@@ -26,6 +26,7 @@ public class GameLoop
         TrailFollow TF = new TrailFollow();
         Collision collisionChecker = new Collision();
         Tower tower = new Tower();
+        Projectile projectile = new Projectile(new Vector2(100, 100), new Vector2(500, 300));
 
         // Box variables
         Rectangle box = new Rectangle(0, 150, 50, 50);
@@ -74,6 +75,7 @@ public class GameLoop
             // Add functions from other classes here
             mouseController.Update();
             TF.Move();
+            projectile.Update();
 
             // Draw
             Raylib.BeginDrawing();
@@ -92,6 +94,7 @@ public class GameLoop
             Raylib.DrawRectangleRec(startButton, Color.GREEN);
             Raylib.DrawText("Start", (int)startButton.x + 20, (int)startButton.y + 10, 20, Color.BLACK);
             tower.draw();
+            projectile.Draw();
             Raylib.EndDrawing();
         }
 

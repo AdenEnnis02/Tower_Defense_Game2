@@ -4,8 +4,8 @@ using System.Numerics;
 
 public class Projectile
 {
-    public float speed = 8.5f; // Speed of projectile.
-    public float radius = 1f; // Collision radius.
+    public float speed = 50f; // Speed of projectile.
+    public float radius = 5f; // Collision radius.
     float radiusSq; // Radius squared; optimization.
     Vector2 position; // Projectile position.
     Vector2 direction; // Direction to the target.
@@ -32,7 +32,7 @@ public class Projectile
 
     public void Draw()
     {
-        Raylib.DrawCircleV(position, radius, Color.RED);
+        Raylib.DrawCircleV(position, radius, Color.PINK);
     }
 }
 
