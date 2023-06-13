@@ -1,43 +1,37 @@
 using Raylib_cs;
-class Tower 
+using System.Numerics;
+
+    public static class AllTowers
+{
+    public static List<Tower> Towers = new List<Tower>();
+    public static List<Projectile> Projectiles = new List<Projectile>();
+}
+public class Tower 
 {
     public int damage;
     private double fireSpeed;
     private int range;
+    public Vector2 tposition;
     
-    private Position location;
 
     //WIP: Default constructor for creating a tower
-    public Tower() 
+    public Tower(Vector2 tposition) 
     {
         this.damage = 10;
         this.fireSpeed = 1.0;
-        this.range = 10;
-        this.location = new Position(10.0,10.0);
+        this.range = 100;
+        this.tposition = tposition;
     }
 
-    public Tower(int x, int y)
-    {
-        this.damage = 10;
-        this.fireSpeed = 1.0;
-        this.range = 10;
-        this.location = new Position((double)x,(double)y);
-        Console.WriteLine("tower made.");
-        draw();      
-    }
+   public void Draw()
+{
+    Raylib.DrawRectangle((int)tposition.X, (int)tposition.Y, 50, 50, Color.BLUE);
+}
 
-    public Tower(int damage, double firespeed, int range, Position location) 
+   public void FireProjectile(Vector2 targetPosition)
     {
-      this.damage = damage;
-      this.fireSpeed = fireSpeed;
-      this.range = range;
-      draw();
-    }
-
-    public void draw()
-    {
-        Rectangle oneBlueSquare1 = new Rectangle((int)location.getX(), (int)location.getY(), 50, 50);
-        Raylib.DrawRectangleRec(oneBlueSquare1, Color.BLUE); 
+        Projectile projectile = new Projectile(tposition, targetPosition);
+        AllTowers.Projectiles.Add(projectile);
     }
     /*
      * Needed Functionality: Fire, Detect, Draw(?)

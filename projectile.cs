@@ -1,16 +1,15 @@
-using System;
 using Raylib_cs;
 using System.Numerics;
 
 public class Projectile
 {
-    public float speed = 50f; // Speed of projectile.
+    public float speed = 100f; // Speed of projectile.
     public float radius = 5f; // Collision radius.
     float radiusSq; // Radius squared; optimization.
     Vector2 position; // Projectile position.
     Vector2 direction; // Direction to the target.
 
-    public Projectile(Vector2 startPosition, Vector2 targetPosition)
+       public Projectile(Vector2 startPosition, Vector2 targetPosition)
     {
         position = startPosition;
         direction = Vector2.Normalize(targetPosition - startPosition);
