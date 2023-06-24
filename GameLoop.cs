@@ -1,15 +1,15 @@
 using System;
 using Raylib_cs;
 using System.Numerics;
-
+using System.Threading;
 public class GameLoop
 {
     public static void Main()
     {
         const int screenWidth = 1150;
         const int screenHeight = 900;
-        const int health = 100;
-        const int money = 100;
+        float health = 100;
+        float money = 100;
 
         int mouseX = Raylib.GetMouseX();
         int mouseY = Raylib.GetMouseY();
@@ -23,11 +23,11 @@ public class GameLoop
         GameBoard gameBoard = new GameBoard();
         MakeSquares MS = new MakeSquares();
         SideBar SB = new SideBar();
-        //TrailFollow TF = new TrailFollow();
+        TrailFollow TF = new TrailFollow();
         Collision collisionChecker = new Collision();
+        Tower tower = new Tower(100, 100);
 
-        // Box variables and Path
-        Rectangle box = new Rectangle(0, 150, 50, 50);
+
         Vector2[] path = new Vector2[]
         {
             new Vector2(0, 150),  // Starting point
@@ -41,12 +41,12 @@ public class GameLoop
             new Vector2(150, 750),
             new Vector2(900, 750),
         };
-        int currentPathIndex = 0;
-        Vector2 target = path[currentPathIndex];
-        float speed = 2.5f;
+        //Lists for monsters & variables
+        List<Monster> monsters = new List<Monster>();
+        List<Monster> monstersToRemove = new List<Monster>();
 
         bool startButtonClicked = false;
-        Rectangle startButton = new Rectangle(900, 800, 250, 100);
+        Rectangle startButton = new Rectangle(990, 840, 100, 50);
 
         while (!Raylib.WindowShouldClose())
         {
@@ -56,23 +56,9 @@ public class GameLoop
                 startButtonClicked = true;
             }
 
-            if (startButtonClicked)
-            {
-                if (Vector2.Distance(new Vector2(box.x, box.y), target) < 1.0f)
-                {
-                    currentPathIndex = (currentPathIndex + 1) % path.Length;
-                    target = path[currentPathIndex];
-                }
-
-                // Move the box towards the target
-                Vector2 direction = Vector2.Normalize(target - new Vector2(box.x, box.y));
-                box.x += direction.X * speed;
-                box.y += direction.Y * speed;
-            }
-
             // Add functions from other classes here
             mouseController.Update();
-       
+            TF.Move();
 
             // Draw
             Raylib.BeginDrawing();
@@ -82,15 +68,45 @@ public class GameLoop
             SB.DrawTowerOptions();
             mouseController.DrawCursor();
 
-            // Draw box
-            Raylib.DrawRectangleRec(box, Color.GOLD);
-
             // Draw HUD
             Raylib.DrawText($"{health}", 990, 50, 30, Color.BLUE);
             Raylib.DrawText($"{money}", 990, 100, 30, Color.BLUE);
             Raylib.DrawRectangleRec(startButton, Color.GREEN);
-            Raylib.DrawText("Start", (int)startButton.x + 100, (int)startButton.y + 40, 20, Color.BLACK);//attaches teh Start to the green box
+            Raylib.DrawText("Start", (int)startButton.x + 20, (int)startButton.y + 10, 20, Color.BLACK);
 
+            if (startButtonClicked)
+            {
+                // creates 20 monsters with a 1 second interval inbetween creation
+                if (monsters.Count < 20 && Raylib.GetTime() % 1.0f < Raylib.GetFrameTime())
+                {
+                    monsters.Add(new Monster(path, Color.GREEN, 100, 50, 2.5f, 10));
+                }
+            }
+
+            if (monsters.Count >= 20)
+            {
+            // Stop creating monsters
+            startButtonClicked = false;
+            }
+        
+            foreach (Monster monster in monsters)
+            {
+                monster.Draw();
+                monster.Move();
+
+                if (monster.CheckEnd(monsters))
+                {
+                    monstersToRemove.Add(monster);
+                    health -= monster.dmg;
+                    Console.WriteLine(health);
+                }
+            }
+            foreach (Monster monsterToRemove in monstersToRemove)
+            {
+                monsters.Remove(monsterToRemove);
+            }
+
+            monstersToRemove.Clear();
             Raylib.EndDrawing();
         }
 

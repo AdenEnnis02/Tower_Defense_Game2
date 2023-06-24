@@ -93,7 +93,6 @@ public class GameBoard
  
     }
 
-
     public void Draw()
     {
         for (int row = 0; row < BoardSize; row++)
