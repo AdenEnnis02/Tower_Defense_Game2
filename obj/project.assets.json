@@ -2,7 +2,7 @@
   "version": 3,
   "targets": {
     "net6.0": {
-      "Raylib-cs/4.5.0": {
+      "Raylib-cs/4.5.0.1": {
         "type": "package",
         "dependencies": {
           "System.Numerics.Vectors": "4.5.0"
@@ -52,10 +52,10 @@
     }
   },
   "libraries": {
-    "Raylib-cs/4.5.0": {
-      "sha512": "VBM71a+X7v1GiobKRmKUKpgB5XLn1ZD+pJT0MuPsgEO2wfJehvPDWLrfrc65rvI3WuwSbs9Jikv5jOglhRLXug==",
+    "Raylib-cs/4.5.0.1": {
+      "sha512": "PDgq5iFmWvABV9HAyXpvf3KZMqMnr+yevYVhRlnnt9ciRPmbgDW6rpl0TwFj7u70loEYuEDE5fUhMu8g2idjEA==",
       "type": "package",
-      "path": "raylib-cs/4.5.0",
+      "path": "raylib-cs/4.5.0.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -64,7 +64,7 @@
         "lib/net5.0/Raylib-cs.xml",
         "lib/net6.0/Raylib-cs.dll",
         "lib/net6.0/Raylib-cs.xml",
-        "raylib-cs.4.5.0.nupkg.sha512",
+        "raylib-cs.4.5.0.1.nupkg.sha512",
         "raylib-cs.nuspec",
         "raylib-cs_64x64.png",
         "runtimes/linux-x64/native/libraylib.so",
@@ -124,23 +124,23 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "Raylib-cs >= 4.5.0"
+      "Raylib-cs >= 4.5.0.1"
     ]
   },
   "packageFolders": {
-    "/Users/adenennis/.nuget/packages/": {}
+    "C:\\Users\\kriss\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/adenennis/Documents/GitHub/Tower_Defense_Game2/Tower_Defense_Game2.csproj",
+      "projectUniqueName": "C:\\Users\\kriss\\Documents\\GitHub\\Tower_Defense_Game2\\Tower_Defense_Game2.csproj",
       "projectName": "Tower_Defense_Game2",
-      "projectPath": "/Users/adenennis/Documents/GitHub/Tower_Defense_Game2/Tower_Defense_Game2.csproj",
-      "packagesPath": "/Users/adenennis/.nuget/packages/",
-      "outputPath": "/Users/adenennis/Documents/GitHub/Tower_Defense_Game2/obj/",
+      "projectPath": "C:\\Users\\kriss\\Documents\\GitHub\\Tower_Defense_Game2\\Tower_Defense_Game2.csproj",
+      "packagesPath": "C:\\Users\\kriss\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kriss\\Documents\\GitHub\\Tower_Defense_Game2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/adenennis/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\kriss\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -166,7 +166,7 @@
         "dependencies": {
           "Raylib-cs": {
             "target": "Package",
-            "version": "[4.5.0, )"
+            "version": "[4.5.0.1, )"
           }
         },
         "imports": [
@@ -185,7 +185,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.302/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
