@@ -2,7 +2,6 @@ using System;
 using Raylib_cs;
 using System.Numerics;
 using System.Threading;
-
 public class GameLoop
 {
     public static void Main()
@@ -26,10 +25,9 @@ public class GameLoop
         SideBar SB = new SideBar();
         TrailFollow TF = new TrailFollow();
         Collision collisionChecker = new Collision();
-        Tower tower = new Tower(100,100);
+        Tower tower = new Tower(100, 100);
 
-        // Box variables
-        Rectangle box = new Rectangle(0, 150, 50, 50);
+
         Vector2[] path = new Vector2[]
         {
             new Vector2(0, 150),  // Starting point
@@ -43,9 +41,8 @@ public class GameLoop
             new Vector2(150, 750),
             new Vector2(900, 750),
         };
-        int currentPathIndex = 0;
-        Vector2 target = path[currentPathIndex];
-        float speed = 2.5f;
+
+        List<Monster> monsters = new List<Monster>();
 
         bool startButtonClicked = false;
         Rectangle startButton = new Rectangle(990, 840, 100, 50);
@@ -56,20 +53,6 @@ public class GameLoop
             if (Raylib.CheckCollisionPointRec(Raylib.GetMousePosition(), startButton) && Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON))
             {
                 startButtonClicked = true;
-            }
-
-            if (startButtonClicked)
-            {
-                if (Vector2.Distance(new Vector2(box.x, box.y), target) < 1.0f)
-                {
-                    currentPathIndex = (currentPathIndex + 1) % path.Length;
-                    target = path[currentPathIndex];
-                }
-
-                // Move the box towards the target
-                Vector2 direction = Vector2.Normalize(target - new Vector2(box.x, box.y));
-                box.x += direction.X * speed;
-                box.y += direction.Y * speed;
             }
 
             // Add functions from other classes here
@@ -84,15 +67,27 @@ public class GameLoop
             SB.DrawTowerOptions();
             mouseController.DrawCursor();
 
-            // Draw box
-            Raylib.DrawRectangleRec(box, Color.GOLD);
-
             // Draw HUD
             Raylib.DrawText($"{health}", 990, 50, 30, Color.BLUE);
             Raylib.DrawText($"{money}", 990, 100, 30, Color.BLUE);
             Raylib.DrawRectangleRec(startButton, Color.GREEN);
             Raylib.DrawText("Start", (int)startButton.x + 20, (int)startButton.y + 10, 20, Color.BLACK);
-            //tower.draw();
+
+            if (startButtonClicked)
+            {
+                // creates 20 monsters with a 1 second interval inbetween creation
+                if (monsters.Count < 20 && Raylib.GetTime() % 1.0f < Raylib.GetFrameTime())
+                {
+                    monsters.Add(new Monster(path, Color.GREEN, 100, 50, 2.5f));
+                }
+
+                // Move and draw each monster
+                foreach (Monster monster in monsters)
+                {
+                    monster.Draw();
+                    monster.Move();
+                }
+            }
             Raylib.EndDrawing();
         }
 
