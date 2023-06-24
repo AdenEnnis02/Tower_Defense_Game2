@@ -6,16 +6,18 @@ using static Raylib_cs.Raylib;//for images to work
 public class ImageService
 {
     // ADD IMAGES
-    public static Image goblinImage = LoadImage("Images/goblin.png"); 
-    public static Image orcImage = LoadImage("Images/orc.png");
-
-
-
+    public static Image goblinImage = LoadImage("images/goblin.png"); 
+    public static Image orcImage = LoadImage("Images/orc-5636526_640.png");
+    public static Image monsterImage = LoadImages("lovepik-a-laughing-monster-png-image_400957064_wh1200.png");
+    public static Image towerImage = LoadImage("Images/istockphoto-166083362.jpg"); 
+    public static Image arrowImage = LoadImage("Images/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAzL3JtNjQwLWVsZW1lbnQtMDUxLnBuZw.png.webp"); 
 
     // ADD TEXTURES
     public static Texture2D goblinTexture = LoadTextureFromImage(goblinImage);
     public static Texture2D orcTexture = LoadTextureFromImage(orcImage);
-
+    public static Texture2D monsterTexture = LoadTextureFromImage(monsterImage);
+    public static Texture2D towerTexture = LoadTextureFromImage(towerImage);
+    public static Texture2D arrowTexture = LoadTextureFromImage(arrowImage);
 
 
 
@@ -23,7 +25,6 @@ public class ImageService
 
     private static readonly List<Image> allImages = new();
     private static readonly List<Texture2D> allTextures = new();
-
 
     /*---METHODS---*/
     public static Texture2D GetTexture(Texture2D textureToReturn)
@@ -45,21 +46,14 @@ public class ImageService
         UnloadTexture(textureToUnload);
     }
 
-    
-
     /*---LISTS---*/
-
-
     public static List<Image> LoadAllImages()
     {
         allImages.Add(goblinImage);
         allImages.Add(orcImage);
-        // Add Images here
-
-        
-
-        
-
+        allImages.Add(monsterImage);
+        allImages.Add(towerImage);
+        allImages.Add(arrowImage);
 
         return allImages;
     }
@@ -68,10 +62,9 @@ public class ImageService
     {
         allTextures.Add(goblinTexture);
         allTextures.Add(orcTexture);
-
-        // add textures here
-
-
+        allTextures.Add(monsterTexture);
+        allTextures.Add(towerTexture);
+        allTextures.Add(arrowTexture);
 
         return allTextures;
     }
@@ -80,9 +73,9 @@ public class ImageService
     {
         UnloadImage(goblinImage);
         UnloadImage(orcImage);
-        // Add all the Images here
-
-    
+        UnloadImage(monsterImage);
+        UnloadImage(towerImage);
+        UnloadImage(arrowImage);
 
         // Director.unloadCheck = true;
     }
@@ -91,8 +84,9 @@ public class ImageService
     {
         UnloadTexture(goblinTexture);
         UnloadTexture(orcTexture);
-        // Add all the textures here
-      
+        UnloadTexture(monsterTexture);
+        UnloadTexture(towerTexture);
+        UnloadTexture(arrowTexture);
 
         // Director.unloadCheck = true;
     }
