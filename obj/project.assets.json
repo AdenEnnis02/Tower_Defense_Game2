@@ -128,19 +128,19 @@
     ]
   },
   "packageFolders": {
-    "/Users/adenennis/.nuget/packages/": {}
+    "C:\\Users\\kriss\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/adenennis/Documents/GitHub/Tower_Defense_Game2/Tower_Defense_Game2.csproj",
+      "projectUniqueName": "C:\\Users\\kriss\\Documents\\GitHub\\Tower_Defense_Game2\\Tower_Defense_Game2.csproj",
       "projectName": "Tower_Defense_Game2",
-      "projectPath": "/Users/adenennis/Documents/GitHub/Tower_Defense_Game2/Tower_Defense_Game2.csproj",
-      "packagesPath": "/Users/adenennis/.nuget/packages/",
-      "outputPath": "/Users/adenennis/Documents/GitHub/Tower_Defense_Game2/obj/",
+      "projectPath": "C:\\Users\\kriss\\Documents\\GitHub\\Tower_Defense_Game2\\Tower_Defense_Game2.csproj",
+      "packagesPath": "C:\\Users\\kriss\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\kriss\\Documents\\GitHub\\Tower_Defense_Game2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/adenennis/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\kriss\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
@@ -185,7 +185,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.302/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
       }
     }
   }
