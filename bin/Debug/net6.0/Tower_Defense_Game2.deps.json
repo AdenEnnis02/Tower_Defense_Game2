@@ -8,13 +8,13 @@
     ".NETCoreApp,Version=v6.0": {
       "Tower_Defense_Game2/1.0.0": {
         "dependencies": {
-          "Raylib-cs": "4.5.0"
+          "Raylib-cs": "4.5.0.1"
         },
         "runtime": {
           "Tower_Defense_Game2.dll": {}
         }
       },
-      "Raylib-cs/4.5.0": {
+      "Raylib-cs/4.5.0.1": {
         "dependencies": {
           "System.Numerics.Vectors": "4.5.0"
         },
@@ -43,12 +43,12 @@
           "runtimes/win-x64/native/raylib.dll": {
             "rid": "win-x64",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "4.5.0.0"
           },
           "runtimes/win-x86/native/raylib.dll": {
             "rid": "win-x86",
             "assetType": "native",
-            "fileVersion": "0.0.0.0"
+            "fileVersion": "4.5.0.0"
           }
         }
       },
@@ -61,12 +61,12 @@
       "serviceable": false,
       "sha512": ""
     },
-    "Raylib-cs/4.5.0": {
+    "Raylib-cs/4.5.0.1": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-VBM71a+X7v1GiobKRmKUKpgB5XLn1ZD+pJT0MuPsgEO2wfJehvPDWLrfrc65rvI3WuwSbs9Jikv5jOglhRLXug==",
-      "path": "raylib-cs/4.5.0",
-      "hashPath": "raylib-cs.4.5.0.nupkg.sha512"
+      "sha512": "sha512-PDgq5iFmWvABV9HAyXpvf3KZMqMnr+yevYVhRlnnt9ciRPmbgDW6rpl0TwFj7u70loEYuEDE5fUhMu8g2idjEA==",
+      "path": "raylib-cs/4.5.0.1",
+      "hashPath": "raylib-cs.4.5.0.1.nupkg.sha512"
     },
     "System.Numerics.Vectors/4.5.0": {
       "type": "package",

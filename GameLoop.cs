@@ -23,10 +23,10 @@ public class GameLoop
         GameBoard gameBoard = new GameBoard();
         MakeSquares MS = new MakeSquares();
         SideBar SB = new SideBar();
-        TrailFollow TF = new TrailFollow();
+        //TrailFollow TF = new TrailFollow();
         Collision collisionChecker = new Collision();
 
-        // Box variables
+        // Box variables and Path
         Rectangle box = new Rectangle(0, 150, 50, 50);
         Vector2[] path = new Vector2[]
         {
@@ -46,7 +46,7 @@ public class GameLoop
         float speed = 2.5f;
 
         bool startButtonClicked = false;
-        Rectangle startButton = new Rectangle(990, 840, 100, 50);
+        Rectangle startButton = new Rectangle(900, 800, 250, 100);
 
         while (!Raylib.WindowShouldClose())
         {
@@ -72,7 +72,7 @@ public class GameLoop
 
             // Add functions from other classes here
             mouseController.Update();
-            TF.Move();
+       
 
             // Draw
             Raylib.BeginDrawing();
@@ -89,7 +89,7 @@ public class GameLoop
             Raylib.DrawText($"{health}", 990, 50, 30, Color.BLUE);
             Raylib.DrawText($"{money}", 990, 100, 30, Color.BLUE);
             Raylib.DrawRectangleRec(startButton, Color.GREEN);
-            Raylib.DrawText("Start", (int)startButton.x + 20, (int)startButton.y + 10, 20, Color.BLACK);
+            Raylib.DrawText("Start", (int)startButton.x + 100, (int)startButton.y + 40, 20, Color.BLACK);//attaches teh Start to the green box
 
             Raylib.EndDrawing();
         }
