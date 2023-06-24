@@ -5,15 +5,14 @@ class Monster
 {
     int hp;
     float speed;
-    bool hit = false;
     int value;
     Color color;
-    public Rectangle box;
+    public float dmg;
     private Vector2[] path;
     private int currentPathIndex;
     private Vector2 position;
 
-    public Monster(Vector2[] path, Color color, int hp, int value, float speed)
+    public Monster(Vector2[] path, Color color, int hp, int value, float speed, int dmg)
     {
         this.path = path;
         currentPathIndex = 0;
@@ -22,6 +21,7 @@ class Monster
         this.value = value;
         this.color = color;
         this.speed = speed;
+        this.dmg = dmg;
     }
 
     public void Draw()
@@ -38,7 +38,30 @@ class Monster
         Vector2 direction = Vector2.Normalize(path[currentPathIndex] - position);
         position += direction * speed;
     }
-
+    public bool CheckEnd(List<Monster> monsters)
+    {
+        Vector2 endPosition = new Vector2(900, 750);
+        if (position.X >= endPosition.X && position.Y >= endPosition.Y)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    // public bool MonsterCheck()
+    // {
+    //     Vector2 endPosition = new Vector2(900, 750);
+    //     if (position.X < endPosition.X && position.Y < endPosition.Y)
+    //     {
+    //         return true;
+    //     }
+    //     else
+    //     {
+    //         return false;
+    //     }
+    // }
 
     // public int damageMonster()
     // {

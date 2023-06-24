@@ -8,8 +8,8 @@ public class GameLoop
     {
         const int screenWidth = 1150;
         const int screenHeight = 900;
-        const int health = 100;
-        const int money = 100;
+        float health = 100;
+        float money = 100;
 
         int mouseX = Raylib.GetMouseX();
         int mouseY = Raylib.GetMouseY();
@@ -41,8 +41,9 @@ public class GameLoop
             new Vector2(150, 750),
             new Vector2(900, 750),
         };
-
+        //Lists for monsters & variables
         List<Monster> monsters = new List<Monster>();
+        List<Monster> monstersToRemove = new List<Monster>();
 
         bool startButtonClicked = false;
         Rectangle startButton = new Rectangle(990, 840, 100, 50);
@@ -78,16 +79,34 @@ public class GameLoop
                 // creates 20 monsters with a 1 second interval inbetween creation
                 if (monsters.Count < 20 && Raylib.GetTime() % 1.0f < Raylib.GetFrameTime())
                 {
-                    monsters.Add(new Monster(path, Color.GREEN, 100, 50, 2.5f));
-                }
-
-                // Move and draw each monster
-                foreach (Monster monster in monsters)
-                {
-                    monster.Draw();
-                    monster.Move();
+                    monsters.Add(new Monster(path, Color.GREEN, 100, 50, 2.5f, 10));
                 }
             }
+
+            if (monsters.Count >= 20)
+            {
+            // Stop creating monsters
+            startButtonClicked = false;
+            }
+        
+            foreach (Monster monster in monsters)
+            {
+                monster.Draw();
+                monster.Move();
+
+                if (monster.CheckEnd(monsters))
+                {
+                    monstersToRemove.Add(monster);
+                    health -= monster.dmg;
+                    Console.WriteLine(health);
+                }
+            }
+            foreach (Monster monsterToRemove in monstersToRemove)
+            {
+                monsters.Remove(monsterToRemove);
+            }
+
+            monstersToRemove.Clear();
             Raylib.EndDrawing();
         }
 
