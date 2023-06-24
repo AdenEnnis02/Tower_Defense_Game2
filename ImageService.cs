@@ -8,7 +8,7 @@ public class ImageService
     // ADD IMAGES
     public static Image goblinImage = LoadImage("images/goblin.png"); 
     public static Image orcImage = LoadImage("Images/orc-5636526_640.png");
-    public static Image monsterImage = LoadImages("lovepik-a-laughing-monster-png-image_400957064_wh1200.png");
+    public static Image monsterImage = LoadImage("lovepik-a-laughing-monster-png-image_400957064_wh1200.png");
     public static Image towerImage = LoadImage("Images/istockphoto-166083362.jpg"); 
     public static Image arrowImage = LoadImage("Images/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTAzL3JtNjQwLWVsZW1lbnQtMDUxLnBuZw.png.webp"); 
 
