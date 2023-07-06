@@ -70,7 +70,7 @@ class ClickSpawn
     public void Draw()
     {
         // Draw the border
-        //Raylib.DrawRectangleLinesEx(border, 5, Color.BLACK);
+        //Raylib.DrawRectangleLinesEx(border, 5, Color.BLACK); Uncomment to see border
 
         foreach (Square square in squares)
         {
