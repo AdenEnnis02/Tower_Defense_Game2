@@ -1,7 +1,9 @@
-using System;
 using Raylib_cs;
+using System.Collections.Generic;
+using System;
 using System.Numerics;
 using System.Threading;
+
 public class GameLoop
 {
     public static void Main()
@@ -21,12 +23,10 @@ public class GameLoop
         // Make instances of other classes here
         Mouse mouseController = new Mouse();
         GameBoard gameBoard = new GameBoard();
-        MakeSquares MS = new MakeSquares();
         SideBar SB = new SideBar();
         TrailFollow TF = new TrailFollow();
         Collision collisionChecker = new Collision();
         Tower tower = new Tower(100, 100);
-
 
         Vector2[] path = new Vector2[]
         {
@@ -41,12 +41,16 @@ public class GameLoop
             new Vector2(150, 750),
             new Vector2(900, 750),
         };
+
         //Lists for monsters & variables
         List<Monster> monsters = new List<Monster>();
         List<Monster> monstersToRemove = new List<Monster>();
 
         bool startButtonClicked = false;
         Rectangle startButton = new Rectangle(990, 840, 100, 50);
+
+        // Create instance of ClickSpawn
+        ClickSpawn clickSpawn = new ClickSpawn();
 
         while (!Raylib.WindowShouldClose())
         {
@@ -59,6 +63,9 @@ public class GameLoop
             // Add functions from other classes here
             mouseController.Update();
             TF.Move();
+
+            // Call the Update method of ClickSpawn
+            clickSpawn.Update();
 
             // Draw
             Raylib.BeginDrawing();
@@ -76,7 +83,7 @@ public class GameLoop
 
             if (startButtonClicked)
             {
-                // creates 20 monsters with a 1 second interval inbetween creation
+                // creates 20 monsters with a 1 second interval in between creation
                 if (monsters.Count < 20 && Raylib.GetTime() % 1.0f < Raylib.GetFrameTime())
                 {
                     monsters.Add(new Monster(path, Color.GREEN, 100, 50, 2.5f, 10));
@@ -85,10 +92,10 @@ public class GameLoop
 
             if (monsters.Count >= 20)
             {
-            // Stop creating monsters
-            startButtonClicked = false;
+                // Stop creating monsters
+                startButtonClicked = false;
             }
-        
+
             foreach (Monster monster in monsters)
             {
                 monster.Draw();
@@ -101,12 +108,17 @@ public class GameLoop
                     Console.WriteLine(health);
                 }
             }
+
             foreach (Monster monsterToRemove in monstersToRemove)
             {
                 monsters.Remove(monsterToRemove);
             }
 
             monstersToRemove.Clear();
+
+            // Call the Draw method of ClickSpawn
+            clickSpawn.Draw();
+
             Raylib.EndDrawing();
         }
 
