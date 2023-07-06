@@ -17,11 +17,11 @@ public class GameBoard
             {
                 if ((row + col) % 2 == 0)
                 {
-                    boardColors[row, col] = Color.WHITE;
+                    boardColors[row, col] = Color.BROWN;
                 }
                 else
                 {
-                    boardColors[row, col] = Color.BLACK;
+                    boardColors[row, col] = Color.BEIGE;
                 }
 
                 redSquares[row, col] = false;
