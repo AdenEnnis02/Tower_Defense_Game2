@@ -66,4 +66,7 @@ C:\Users\natha\OneDrive\All Things Code\CSE 310\td2\Tower_Defense_Game2\obj\Debu
 C:\Users\natha\OneDrive\All Things Code\CSE 310\td2\Tower_Defense_Game2\obj\Debug\net6.0\Tower_Defense_Game2.pdb
 C:\Users\natha\OneDrive\All Things Code\CSE 310\td2\Tower_Defense_Game2\obj\Debug\net6.0\Tower_Defense_Game2.genruntimeconfig.cache
 C:\Users\natha\OneDrive\All Things Code\CSE 310\td2\Tower_Defense_Game2\obj\Debug\net6.0\ref\Tower_Defense_Game2.dll
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
